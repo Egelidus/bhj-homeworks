@@ -1,35 +1,26 @@
-const getHole = (index) => document.getElementById(`hole${index}`);
-// const moleClass = getHole.className;
 const win = document.getElementById("dead");
 const loss = document.getElementById("lost");
-document.getElementById("hole1").onclick = function () {
-  if (document.getElementById("hole1").className == "hole_has-mole") {
-    win.textContent++;
-  } else {
-    loss.textContent++;
-  }
-};
-
-// getHole(1).onclick = function () {
-//   if (getHole(1).className == "hole_has-mole") {
-//     win.textContent++;
-//   } else {
-//     loss.textContent++;
-//   }
-// };
-
-// }
-// for (let i = 0; i < 9; i++) {
-//   getHole(i).onclick = function () {
-// }
-
-if (win.textContent === 10) {
-  win.textContent = 0;
-  loss.textContent = 0;
-  alert("Победа");
-}
-if (loss.textContent > 5) {
-  win.textContent = 0;
-  loss.textContent = 0;
-  alert("Поражение");
+for (let i = 1; i < 10; i++) {
+  const getHole = document.getElementById(`hole${i}`);
+  getHole.onclick = function () {
+    if (getHole.classList.contains("hole_has-mole")) {
+      win.textContent++;
+    } else {
+      loss.textContent++;
+    }
+    if (win.textContent == 10) {
+      setTimeout(() => {
+        alert("Победа");
+        win.textContent = 0;
+        loss.textContent = 0;
+      }, 100);
+    }
+    if (loss.textContent == 5) {
+      setTimeout(() => {
+        alert("Поражение");
+        win.textContent = 0;
+        loss.textContent = 0;
+      }, 100);
+    }
+  };
 }
